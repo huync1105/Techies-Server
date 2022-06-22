@@ -23,8 +23,11 @@ router.post('', (req, res) => {
           }
         )
         res.send({
-          username: userInfo.username,
-          accessToken: accessToken
+          message: 'Đăng nhập thành công',
+          data: {
+            username: userInfo.username,
+            accessToken: accessToken
+          }
         })
       } else {
         res.send({ message: 'Sai password' })
