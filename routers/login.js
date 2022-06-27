@@ -16,8 +16,8 @@ router.post('', (req, res) => {
     if (user.username === userInfo.username) {
       if (user.password === userInfo.password) {
         const accessToken = jwt.sign(
-          userInfo, 
-          process.env.ACCESS_TOKEN_SECRET, 
+          userInfo,
+          process.env.ACCESS_TOKEN_SECRET,
           {
             expiresIn: '10s',
           }
@@ -27,13 +27,20 @@ router.post('', (req, res) => {
           data: {
             username: userInfo.username,
             accessToken: accessToken
-          }
+          },
+          status: 200
         })
       } else {
-        res.send({ message: 'Sai password' })
+        res.send({ 
+          message: 'Sai password', 
+          status: 500
+        })
       }
     } else {
-      res.send({ message: 'Sai user' })
+      res.send({ 
+        message: 'Sai user',
+        status: 500
+      })
     }
   })
 })
